@@ -116,51 +116,19 @@
 
     <!-- Carrusel de Desayunos -->
     <h2>Desayunos</h2>
-    <div class="carousel" id="desayunos">
-      <div class="card">
-        <img src="https://source.unsplash.com/300x200/?breakfast,eggs" alt="Huevo con nopales">
-        <h3>Huevo con nopales</h3>
-        <button onclick="selectDish('desayuno1', 1)">1 Porción</button>
-        <button onclick="selectDish('desayuno1', 2)">2 Porciones</button>
-      </div>
-      <!-- Repetir para otros 11 desayunos -->
-    </div>
+    <div class="carousel" id="desayunos"></div>
 
     <!-- Carrusel de Comidas -->
     <h2>Comidas</h2>
-    <div class="carousel" id="comidas">
-      <div class="card">
-        <img src="https://source.unsplash.com/300x200/?lunch,chicken" alt="Pollo a la plancha">
-        <h3>Pollo a la plancha</h3>
-        <button onclick="selectDish('comida1', 1)">1 Porción</button>
-        <button onclick="selectDish('comida1', 2)">2 Porciones</button>
-      </div>
-      <!-- Repetir para otras 11 comidas -->
-    </div>
+    <div class="carousel" id="comidas"></div>
 
     <!-- Carrusel de Colaciones -->
     <h2>Colaciones</h2>
-    <div class="carousel" id="colaciones">
-      <div class="card">
-        <img src="https://source.unsplash.com/300x200/?snack,yogurt" alt="Yogurt con frutas">
-        <h3>Yogurt con frutas</h3>
-        <button onclick="selectDish('colacion1', 1)">1 Porción</button>
-        <button onclick="selectDish('colacion1', 2)">2 Porciones</button>
-      </div>
-      <!-- Repetir para otras 11 colaciones -->
-    </div>
+    <div class="carousel" id="colaciones"></div>
 
     <!-- Carrusel de Cenas -->
     <h2>Cenas</h2>
-    <div class="carousel" id="cenas">
-      <div class="card">
-        <img src="https://source.unsplash.com/300x200/?dinner,soup" alt="Sopa de verduras">
-        <h3>Sopa de verduras</h3>
-        <button onclick="selectDish('cena1', 1)">1 Porción</button>
-        <button onclick="selectDish('cena1', 2)">2 Porciones</button>
-      </div>
-      <!-- Repetir para otras 11 cenas -->
-    </div>
+    <div class="carousel" id="cenas"></div>
   </div>
 
   <!-- Pantalla Principal (Tabla de Menú) -->
@@ -179,10 +147,10 @@
       <tbody>
         <tr>
           <td>Lunes</td>
-          <td style="background-image: url('https://source.unsplash.com/300x200/?breakfast,eggs');" onclick="showRecipe('Huevo con nopales')">Huevo con nopales</td>
-          <td style="background-image: url('https://source.unsplash.com/300x200/?lunch,chicken');" onclick="showRecipe('Pollo a la plancha')">Pollo a la plancha</td>
-          <td style="background-image: url('https://source.unsplash.com/300x200/?snack,yogurt');" onclick="showRecipe('Yogurt con frutas')">Yogurt con frutas</td>
-          <td style="background-image: url('https://source.unsplash.com/300x200/?dinner,soup');" onclick="showRecipe('Sopa de verduras')">Sopa de verduras</td>
+          <td onclick="showRecipe('Huevo con nopales')">Huevo con nopales</td>
+          <td onclick="showRecipe('Pollo a la plancha')">Pollo a la plancha</td>
+          <td onclick="showRecipe('Yogurt con frutas')">Yogurt con frutas</td>
+          <td onclick="showRecipe('Sopa de verduras')">Sopa de verduras</td>
         </tr>
         <!-- Repetir para otros días -->
       </tbody>
@@ -200,15 +168,13 @@
   <!-- Pantalla de Lista de Compras -->
   <div id="shopping-list-screen" class="screen shopping-list-screen">
     <h2>Lista de Compras</h2>
-    <ul id="shopping-list">
-      <!-- Aquí se generará la lista de compras -->
-    </ul>
+    <ul id="shopping-list"></ul>
     <button onclick="showMainScreen()">Regresar al Menú</button>
   </div>
 
   <script>
     // Variables globales
-    const selectedDishes = JSON.parse(localStorage.getItem('selectedDishes')) || {
+    let selectedDishes = JSON.parse(localStorage.getItem('selectedDishes')) || {
       desayunos: [],
       comidas: [],
       colaciones: [],
@@ -221,13 +187,56 @@
     const recipeScreen = document.getElementById('recipe-screen');
     const shoppingListScreen = document.getElementById('shopping-list-screen');
 
-    // Mostrar pantalla principal si ya hay selecciones
-    if (selectedDishes.desayunos.length > 0 && selectedDishes.comidas.length > 0 &&
-        selectedDishes.colaciones.length > 0 && selectedDishes.cenas.length > 0) {
-      showMainScreen();
+    // Cargar datos desde el XML
+    function loadXMLData() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'recetas.xml', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          loadCarousel(xmlDoc, 'desayunos', 'desayunos');
+          loadCarousel(xmlDoc, 'comidas', 'comidas');
+          loadCarousel(xmlDoc, 'colaciones', 'colaciones');
+          loadCarousel(xmlDoc, 'cenas', 'cenas');
+        }
+      };
+      xhr.send();
     }
 
-    // Funciones para cambiar pantallas
+    // Cargar carrusel desde XML
+    function loadCarousel(xmlDoc, category, containerId) {
+      const container = document.getElementById(containerId);
+      const platillos = xmlDoc.getElementsByTagName(category)[0].getElementsByTagName('platillo');
+      for (let i = 0; i < platillos.length; i++) {
+        const nombre = platillos[i].getElementsByTagName('nombre')[0].textContent;
+        const imagen = platillos[i].getElementsByTagName('imagen')[0].textContent;
+        const porcion = platillos[i].getElementsByTagName('porcion')[0].textContent;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${imagen}" alt="${nombre}">
+          <h3>${nombre}</h3>
+          <button onclick="selectDish('${category}', '${nombre}', 1)">1 Porción</button>
+          <button onclick="selectDish('${category}', '${nombre}', 2)">2 Porciones</button>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    // Seleccionar platillo
+    function selectDish(category, dish, portions) {
+      selectedDishes[category].push({ dish, portions });
+      localStorage.setItem('selectedDishes', JSON.stringify(selectedDishes));
+
+      // Verificar si ya se seleccionaron todos los platillos
+      if (selectedDishes.desayunos.length > 0 && selectedDishes.comidas.length > 0 &&
+          selectedDishes.colaciones.length > 0 && selectedDishes.cenas.length > 0) {
+        showMainScreen();
+      }
+    }
+
+    // Mostrar pantalla principal
     function showMainScreen() {
       carouselScreen.classList.remove('active');
       recipeScreen.classList.remove('active');
@@ -235,6 +244,7 @@
       mainScreen.classList.add('active');
     }
 
+    // Mostrar receta
     function showRecipe(recipeName) {
       const recipeTitle = document.getElementById('recipe-title');
       const recipeDescription = document.getElementById('recipe-description');
@@ -244,6 +254,7 @@
       recipeScreen.classList.add('active');
     }
 
+    // Mostrar lista de compras
     function showShoppingList() {
       const shoppingList = document.getElementById('shopping-list');
       shoppingList.innerHTML = '<li>Lista de compras generada aquí</li>';
@@ -251,20 +262,8 @@
       shoppingListScreen.classList.add('active');
     }
 
-    // Seleccionar platillos
-    function selectDish(dish, portions) {
-      if (dish.startsWith('desayuno')) selectedDishes.desayunos.push({ dish, portions });
-      if (dish.startsWith('comida')) selectedDishes.comidas.push({ dish, portions });
-      if (dish.startsWith('colacion')) selectedDishes.colaciones.push({ dish, portions });
-      if (dish.startsWith('cena')) selectedDishes.cenas.push({ dish, portions });
-      localStorage.setItem('selectedDishes', JSON.stringify(selectedDishes));
-
-      // Verificar si ya se seleccionaron todos los platillos
-      if (selectedDishes.desayunos.length > 0 && selectedDishes.comidas.length > 0 &&
-          selectedDishes.colaciones.length > 0 && selectedDishes.cenas.length > 0) {
-        showMainScreen();
-      }
-    }
+    // Cargar datos al iniciar
+    loadXMLData();
   </script>
 </body>
 </html>
