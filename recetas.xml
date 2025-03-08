@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recetas>
+  <!-- Desayunos -->
+  <desayunos>
+    <platillo id="1">
+      <nombre>Huevo con nopales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?breakfast,eggs</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="2">
+      <nombre>Tostadas de aguacate</nombre>
+      <imagen>https://source.unsplash.com/300x200/?avocado,toast</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="3">
+      <nombre>Chilaquiles verdes</nombre>
+      <imagen>https://source.unsplash.com/300x200/?chilaquiles,green</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="4">
+      <nombre>Molletes integrales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?beans,toast</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="5">
+      <nombre>Omelette de espinacas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?omelette,spinach</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="6">
+      <nombre>Avena con frutas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?oatmeal,fruit</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="7">
+      <nombre>Hot cakes integrales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?pancakes,maple</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="8">
+      <nombre>Licuado de plátano</nombre>
+      <imagen>https://source.unsplash.com/300x200/?smoothie,banana</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="9">
+      <nombre>Yogurt con frutos rojos</nombre>
+      <imagen>https://source.unsplash.com/300x200/?yogurt,berries</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="10">
+      <nombre>Sándwich de aguacate</nombre>
+      <imagen>https://source.unsplash.com/300x200/?sandwich,avocado</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="11">
+      <nombre>Waffles integrales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?waffles,berries</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="12">
+      <nombre>Burrito de huevo</nombre>
+      <imagen>https://source.unsplash.com/300x200/?burrito,breakfast</imagen>
+      <porcion>1</porcion>
+    </platillo>
+  </desayunos>
+
+  <!-- Comidas -->
+  <comidas>
+    <platillo id="1">
+      <nombre>Pollo a la plancha</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,chicken</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="2">
+      <nombre>Pescado al horno</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,fish</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="3">
+      <nombre>Frijoles charros</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,beans</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="4">
+      <nombre>Ensalada de quinoa</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,vegetables</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="5">
+      <nombre>Tacos de pescado</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,tacos</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="6">
+      <nombre>Burrito de pollo</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,burrito</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="7">
+      <nombre>Ensalada César</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,salad</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="8">
+      <nombre>Pasta integral</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,pasta</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="9">
+      <nombre>Arroz con verduras</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,rice</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="10">
+      <nombre>Sopa de lentejas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,soup</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="11">
+      <nombre>Bistec a la mexicana</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,steak</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="12">
+      <nombre>Pechuga asada</nombre>
+      <imagen>https://source.unsplash.com/300x200/?lunch,chicken</imagen>
+      <porcion>1</porcion>
+    </platillo>
+  </comidas>
+
+  <!-- Colaciones -->
+  <colaciones>
+    <platillo id="1">
+      <nombre>Yogurt con frutas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,yogurt</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="2">
+      <nombre>Fruta con nueces</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,nuts</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="3">
+      <nombre>Palomitas naturales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,popcorn</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="4">
+      <nombre>Verduras con hummus</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,hummus</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="5">
+      <nombre>Manzana con almendras</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,apple</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="6">
+      <nombre>Plátano con miel</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,banana</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="7">
+      <nombre>Frutos rojos con yogurt</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,berries</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="8">
+      <nombre>Galletas integrales</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,cookies</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="9">
+      <nombre>Barra de granola</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,granola</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="10">
+      <nombre>Batido de proteína</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,protein</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="11">
+      <nombre>Nueces mixtas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,nuts</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="12">
+      <nombre>Rollitos de jamón y queso</nombre>
+      <imagen>https://source.unsplash.com/300x200/?snack,roll</imagen>
+      <porcion>1</porcion>
+    </platillo>
+  </colaciones>
+
+  <!-- Cenas -->
+  <cenas>
+    <platillo id="1">
+      <nombre>Sopa de verduras</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,soup</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="2">
+      <nombre>Omelette de espinacas</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,omelette</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="3">
+      <nombre>Pechuga a la plancha</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,chicken</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="4">
+      <nombre>Ensalada César</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,salad</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="5">
+      <nombre>Pescado al horno</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,fish</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="6">
+      <nombre>Quinoa con verduras</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,quinoa</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="7">
+      <nombre>Tostadas de atún</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,tuna</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="8">
+      <nombre>Crema de calabacita</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,soup</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="9">
+      <nombre>Pasta integral</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,pasta</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="10">
+      <nombre>Hamburguesa de pavo</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,burger</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="11">
+      <nombre>Enchiladas verdes</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,enchiladas</imagen>
+      <porcion>1</porcion>
+    </platillo>
+    <platillo id="12">
+      <nombre>Tacos de pollo</nombre>
+      <imagen>https://source.unsplash.com/300x200/?dinner,tacos</imagen>
+      <porcion>1</porcion>
+    </platillo>
+  </cenas>
+</recetas>
