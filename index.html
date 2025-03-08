@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Semanal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      padding: 20px;
+    }
+    .card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 300px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .card h3 {
+      margin: 10px 0;
+    }
+    .card button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    .card button:hover {
+      background: #0056b3;
+    }
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .menu-table th, .menu-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .menu-table th {
+      background-color: #007bff;
+      color: white;
+    }
+    .menu-table td {
+      height: 100px;
+      cursor: pointer;
+    }
+    .menu-table td:hover {
+      opacity: 0.8;
+    }
+    .shopping-list {
+      margin: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .shopping-list h2 {
+      margin-top: 0;
+    }
+    .shopping-list ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .shopping-list li {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Menú Semanal</h1>
+
+  <!-- Carrusel de Desayunos -->
+  <h2>Desayunos</h2>
+  <div class="carousel" id="desayunos">
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Desayuno 1">
+      <h3>Huevo con nopales</h3>
+      <button onclick="selectDish('desayuno1', 1)">1 Porción</button>
+      <button onclick="selectDish('desayuno1', 2)">2 Porciones</button>
+    </div>
+    <!-- Repetir para otros desayunos -->
+  </div>
+
+  <!-- Carrusel de Comidas -->
+  <h2>Comidas</h2>
+  <div class="carousel" id="comidas">
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Comida 1">
+      <h3>Pollo a la plancha</h3>
+      <button onclick="selectDish('comida1', 1)">1 Porción</button>
+      <button onclick="selectDish('comida1', 2)">2 Porciones</button>
+    </div>
+    <!-- Repetir para otras comidas -->
+  </div>
+
+  <!-- Carrusel de Colaciones -->
+  <h2>Colaciones</h2>
+  <div class="carousel" id="colaciones">
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Colación 1">
+      <h3>Yogurt con frutas</h3>
+      <button onclick="selectDish('colacion1', 1)">1 Porción</button>
+      <button onclick="selectDish('colacion1', 2)">2 Porciones</button>
+    </div>
+    <!-- Repetir para otras colaciones -->
+  </div>
+
+  <!-- Carrusel de Cenas -->
+  <h2>Cenas</h2>
+  <div class="carousel" id="cenas">
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Cena 1">
+      <h3>Sopa de verduras</h3>
+      <button onclick="selectDish('cena1', 1)">1 Porción</button>
+      <button onclick="selectDish('cena1', 2)">2 Porciones</button>
+    </div>
+    <!-- Repetir para otras cenas -->
+  </div>
+
+  <!-- Tabla de Menú Semanal -->
+  <h2>Menú Semanal</h2>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Desayuno</th>
+        <th>Comida</th>
+        <th>Colación</th>
+        <th>Cena</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lunes</td>
+        <td style="background-image: url('https://via.placeholder.com/300');">Huevo con nopales</td>
+        <td style="background-image: url('https://via.placeholder.com/300');">Pollo a la plancha</td>
+        <td style="background-image: url('https://via.placeholder.com/300');">Yogurt con frutas</td>
+        <td style="background-image: url('https://via.placeholder.com/300');">Sopa de verduras</td>
+      </tr>
+      <!-- Repetir para otros días -->
+    </tbody>
+  </table>
+
+  <!-- Lista de Compras -->
+  <div class="shopping-list">
+    <h2>Lista de Compras</h2>
+    <ul id="shopping-list">
+      <!-- Aquí se generará la lista de compras -->
+    </ul>
+  </div>
+
+  <script>
+    const selectedDishes = {
+      desayunos: [],
+      comidas: [],
+      colaciones: [],
+      cenas: []
+    };
+
+    function selectDish(dish, portions) {
+      // Lógica para seleccionar platillos
+      console.log(`Seleccionado: ${dish} - ${portions} porciones`);
+    }
+
+    function generateShoppingList() {
+      // Lógica para generar la lista de compras
+      const list = document.getElementById('shopping-list');
+      list.innerHTML = '<li>Lista de compras generada aquí</li>';
+    }
+  </script>
+</body>
+</html>
