@@ -11,6 +11,13 @@
       margin: 0;
       padding: 0;
     }
+    .screen {
+      display: none;
+      padding: 20px;
+    }
+    .screen.active {
+      display: block;
+    }
     .carousel {
       display: flex;
       overflow-x: auto;
@@ -58,10 +65,11 @@
       text-align: center;
       background-size: cover;
       background-position: center;
+      color: white;
+      text-shadow: 1px 1px 2px black;
     }
     .menu-table th {
       background-color: #007bff;
-      color: white;
     }
     .menu-table td {
       height: 100px;
@@ -70,125 +78,192 @@
     .menu-table td:hover {
       opacity: 0.8;
     }
-    .shopping-list {
-      margin: 20px;
-      padding: 20px;
+    .recipe-screen, .shopping-list-screen {
       background: white;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
     }
-    .shopping-list h2 {
+    .recipe-screen h2, .shopping-list-screen h2 {
       margin-top: 0;
     }
-    .shopping-list ul {
+    .recipe-screen button, .shopping-list-screen button {
+      margin: 10px 0;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    .recipe-screen button:hover, .shopping-list-screen button:hover {
+      background: #0056b3;
+    }
+    .shopping-list-screen ul {
       list-style-type: none;
       padding: 0;
     }
-    .shopping-list li {
+    .shopping-list-screen li {
       margin: 10px 0;
     }
   </style>
 </head>
 <body>
-  <h1>Menú Semanal</h1>
+  <!-- Pantalla de Carruseles -->
+  <div id="carousel-screen" class="screen active">
+    <h1>Selecciona tus platillos</h1>
 
-  <!-- Carrusel de Desayunos -->
-  <h2>Desayunos</h2>
-  <div class="carousel" id="desayunos">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" alt="Desayuno 1">
-      <h3>Huevo con nopales</h3>
-      <button onclick="selectDish('desayuno1', 1)">1 Porción</button>
-      <button onclick="selectDish('desayuno1', 2)">2 Porciones</button>
+    <!-- Carrusel de Desayunos -->
+    <h2>Desayunos</h2>
+    <div class="carousel" id="desayunos">
+      <div class="card">
+        <img src="https://source.unsplash.com/300x200/?breakfast,eggs" alt="Huevo con nopales">
+        <h3>Huevo con nopales</h3>
+        <button onclick="selectDish('desayuno1', 1)">1 Porción</button>
+        <button onclick="selectDish('desayuno1', 2)">2 Porciones</button>
+      </div>
+      <!-- Repetir para otros 11 desayunos -->
     </div>
-    <!-- Repetir para otros desayunos -->
+
+    <!-- Carrusel de Comidas -->
+    <h2>Comidas</h2>
+    <div class="carousel" id="comidas">
+      <div class="card">
+        <img src="https://source.unsplash.com/300x200/?lunch,chicken" alt="Pollo a la plancha">
+        <h3>Pollo a la plancha</h3>
+        <button onclick="selectDish('comida1', 1)">1 Porción</button>
+        <button onclick="selectDish('comida1', 2)">2 Porciones</button>
+      </div>
+      <!-- Repetir para otras 11 comidas -->
+    </div>
+
+    <!-- Carrusel de Colaciones -->
+    <h2>Colaciones</h2>
+    <div class="carousel" id="colaciones">
+      <div class="card">
+        <img src="https://source.unsplash.com/300x200/?snack,yogurt" alt="Yogurt con frutas">
+        <h3>Yogurt con frutas</h3>
+        <button onclick="selectDish('colacion1', 1)">1 Porción</button>
+        <button onclick="selectDish('colacion1', 2)">2 Porciones</button>
+      </div>
+      <!-- Repetir para otras 11 colaciones -->
+    </div>
+
+    <!-- Carrusel de Cenas -->
+    <h2>Cenas</h2>
+    <div class="carousel" id="cenas">
+      <div class="card">
+        <img src="https://source.unsplash.com/300x200/?dinner,soup" alt="Sopa de verduras">
+        <h3>Sopa de verduras</h3>
+        <button onclick="selectDish('cena1', 1)">1 Porción</button>
+        <button onclick="selectDish('cena1', 2)">2 Porciones</button>
+      </div>
+      <!-- Repetir para otras 11 cenas -->
+    </div>
   </div>
 
-  <!-- Carrusel de Comidas -->
-  <h2>Comidas</h2>
-  <div class="carousel" id="comidas">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" alt="Comida 1">
-      <h3>Pollo a la plancha</h3>
-      <button onclick="selectDish('comida1', 1)">1 Porción</button>
-      <button onclick="selectDish('comida1', 2)">2 Porciones</button>
-    </div>
-    <!-- Repetir para otras comidas -->
+  <!-- Pantalla Principal (Tabla de Menú) -->
+  <div id="main-screen" class="screen">
+    <h1>Menú Semanal</h1>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Desayuno</th>
+          <th>Comida</th>
+          <th>Colación</th>
+          <th>Cena</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lunes</td>
+          <td style="background-image: url('https://source.unsplash.com/300x200/?breakfast,eggs');" onclick="showRecipe('Huevo con nopales')">Huevo con nopales</td>
+          <td style="background-image: url('https://source.unsplash.com/300x200/?lunch,chicken');" onclick="showRecipe('Pollo a la plancha')">Pollo a la plancha</td>
+          <td style="background-image: url('https://source.unsplash.com/300x200/?snack,yogurt');" onclick="showRecipe('Yogurt con frutas')">Yogurt con frutas</td>
+          <td style="background-image: url('https://source.unsplash.com/300x200/?dinner,soup');" onclick="showRecipe('Sopa de verduras')">Sopa de verduras</td>
+        </tr>
+        <!-- Repetir para otros días -->
+      </tbody>
+    </table>
+    <button onclick="showShoppingList()">Ver Lista de Compras</button>
   </div>
 
-  <!-- Carrusel de Colaciones -->
-  <h2>Colaciones</h2>
-  <div class="carousel" id="colaciones">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" alt="Colación 1">
-      <h3>Yogurt con frutas</h3>
-      <button onclick="selectDish('colacion1', 1)">1 Porción</button>
-      <button onclick="selectDish('colacion1', 2)">2 Porciones</button>
-    </div>
-    <!-- Repetir para otras colaciones -->
+  <!-- Pantalla de Receta -->
+  <div id="recipe-screen" class="screen recipe-screen">
+    <h2 id="recipe-title">Receta</h2>
+    <p id="recipe-description">Descripción de la receta.</p>
+    <button onclick="showMainScreen()">Regresar al Menú</button>
   </div>
 
-  <!-- Carrusel de Cenas -->
-  <h2>Cenas</h2>
-  <div class="carousel" id="cenas">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" alt="Cena 1">
-      <h3>Sopa de verduras</h3>
-      <button onclick="selectDish('cena1', 1)">1 Porción</button>
-      <button onclick="selectDish('cena1', 2)">2 Porciones</button>
-    </div>
-    <!-- Repetir para otras cenas -->
-  </div>
-
-  <!-- Tabla de Menú Semanal -->
-  <h2>Menú Semanal</h2>
-  <table class="menu-table">
-    <thead>
-      <tr>
-        <th>Día</th>
-        <th>Desayuno</th>
-        <th>Comida</th>
-        <th>Colación</th>
-        <th>Cena</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Lunes</td>
-        <td style="background-image: url('https://via.placeholder.com/300');">Huevo con nopales</td>
-        <td style="background-image: url('https://via.placeholder.com/300');">Pollo a la plancha</td>
-        <td style="background-image: url('https://via.placeholder.com/300');">Yogurt con frutas</td>
-        <td style="background-image: url('https://via.placeholder.com/300');">Sopa de verduras</td>
-      </tr>
-      <!-- Repetir para otros días -->
-    </tbody>
-  </table>
-
-  <!-- Lista de Compras -->
-  <div class="shopping-list">
+  <!-- Pantalla de Lista de Compras -->
+  <div id="shopping-list-screen" class="screen shopping-list-screen">
     <h2>Lista de Compras</h2>
     <ul id="shopping-list">
       <!-- Aquí se generará la lista de compras -->
     </ul>
+    <button onclick="showMainScreen()">Regresar al Menú</button>
   </div>
 
   <script>
-    const selectedDishes = {
+    // Variables globales
+    const selectedDishes = JSON.parse(localStorage.getItem('selectedDishes')) || {
       desayunos: [],
       comidas: [],
       colaciones: [],
       cenas: []
     };
 
-    function selectDish(dish, portions) {
-      // Lógica para seleccionar platillos
-      console.log(`Seleccionado: ${dish} - ${portions} porciones`);
+    // Pantallas
+    const carouselScreen = document.getElementById('carousel-screen');
+    const mainScreen = document.getElementById('main-screen');
+    const recipeScreen = document.getElementById('recipe-screen');
+    const shoppingListScreen = document.getElementById('shopping-list-screen');
+
+    // Mostrar pantalla principal si ya hay selecciones
+    if (selectedDishes.desayunos.length > 0 && selectedDishes.comidas.length > 0 &&
+        selectedDishes.colaciones.length > 0 && selectedDishes.cenas.length > 0) {
+      showMainScreen();
     }
 
-    function generateShoppingList() {
-      // Lógica para generar la lista de compras
-      const list = document.getElementById('shopping-list');
-      list.innerHTML = '<li>Lista de compras generada aquí</li>';
+    // Funciones para cambiar pantallas
+    function showMainScreen() {
+      carouselScreen.classList.remove('active');
+      recipeScreen.classList.remove('active');
+      shoppingListScreen.classList.remove('active');
+      mainScreen.classList.add('active');
+    }
+
+    function showRecipe(recipeName) {
+      const recipeTitle = document.getElementById('recipe-title');
+      const recipeDescription = document.getElementById('recipe-description');
+      recipeTitle.textContent = recipeName;
+      recipeDescription.textContent = `Receta detallada de ${recipeName}.`;
+      mainScreen.classList.remove('active');
+      recipeScreen.classList.add('active');
+    }
+
+    function showShoppingList() {
+      const shoppingList = document.getElementById('shopping-list');
+      shoppingList.innerHTML = '<li>Lista de compras generada aquí</li>';
+      mainScreen.classList.remove('active');
+      shoppingListScreen.classList.add('active');
+    }
+
+    // Seleccionar platillos
+    function selectDish(dish, portions) {
+      if (dish.startsWith('desayuno')) selectedDishes.desayunos.push({ dish, portions });
+      if (dish.startsWith('comida')) selectedDishes.comidas.push({ dish, portions });
+      if (dish.startsWith('colacion')) selectedDishes.colaciones.push({ dish, portions });
+      if (dish.startsWith('cena')) selectedDishes.cenas.push({ dish, portions });
+      localStorage.setItem('selectedDishes', JSON.stringify(selectedDishes));
+
+      // Verificar si ya se seleccionaron todos los platillos
+      if (selectedDishes.desayunos.length > 0 && selectedDishes.comidas.length > 0 &&
+          selectedDishes.colaciones.length > 0 && selectedDishes.cenas.length > 0) {
+        showMainScreen();
+      }
     }
   </script>
 </body>
